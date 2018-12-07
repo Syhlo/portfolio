@@ -1,0 +1,258 @@
+/* 
+#--------------#
+#  Global CSS  #
+#--------------#
+*/
+
+:root {
+    /* Nav */
+    --nav: #2e343a;
+    --nav-hover: #393f44;
+
+    /* Header */
+    --header-bg: #3b434b;
+    --header: #ffffff;
+    --header2: #c7c7c7;
+
+    /* Page Background */
+    --light: #d4dce4;
+    
+    /* Icons */
+    --user: #5e855f;
+    --info: #62869c;
+
+    /* Misc */
+    --skillset: #f5f7fa;
+    --tags: #939ba3;
+}
+
+.subtitle {
+    padding-top: 5px;
+}
+
+/* 
+#------------------#
+#  Navigation Bar  #
+#------------------#
+*/
+
+@media only screen and (min-width: 1088px) {
+    .fa-envelope {
+        display: none;
+    }
+}
+
+
+    .navbar.is-dark {
+        background-color: var(--nav);
+    }
+
+    .navbar-item {
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    a.navbar-item:hover {
+        background-color: var(--nav-hover) !important;
+        border-bottom: 2px solid var(--header);
+    }
+
+    .active {
+        background-color: var(--nav-hover) !important;
+        border-bottom: 2px solid var(--header);
+    }
+
+    .navbar-start {
+        margin-left: 10px;
+    }
+
+    .navbar-end {
+        margin-right: 20px;
+    }
+
+    .fa-envelope {
+        font-size: 24px;
+    }
+
+/* 
+#------------------#
+#  Header Section  #
+#------------------#
+*/
+
+@media only screen and (max-width: 768px) {
+    .hero-body {
+        height: 40vh;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .hero-body {
+        height: 75vh;
+    }
+}
+
+
+    .hero-body.nav-fix {
+        text-align: center;
+        position: relative;
+    }
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .nav-fix {
+        margin-top: 100px;
+    }
+
+
+    .hero.is-dark {
+        background-color: var(--header-bg);
+    }
+
+    .main-header {
+        border-bottom: 10px solid var(--nav)
+    }
+
+    .title.main-text {
+        color: var(--header) !important;
+    }
+
+    .subtitle.main-text {
+        color: var(--header2) !important;
+    }
+
+/* 
+#--------------------#
+#  Services Section  #
+#--------------------#
+*/
+
+@media only screen and (max-width: 768px) {
+    
+    .notification.is-info {
+        background-color: var(--header-bg) !important;
+        margin: 10%;
+        margin-bottom: 0;
+    }
+    
+}
+
+@media only screen and (min-width: 768px) {
+    
+    .notification.is-info {
+        background-color: var(--header-bg) !important;
+        margin: 3%;
+    }
+}
+
+    .has-background-light {
+        background-color: var(--skillset) !important;
+    }
+
+    .fa-user-circle {
+        color: var(--user);
+    }
+
+    .fa-info-circle {
+        color: var(--info);
+    }
+
+
+
+
+/* 
+#---------------------#
+#  Portfolio Section  #
+#---------------------#
+*/
+
+@media only screen and (max-width: 1088px) {
+    
+    .hero .box {
+        margin: 5% auto;
+        padding: 0;
+        width: 80%;
+        box-shadow: none;
+    }
+    
+}
+
+@media only screen and (min-width: 1088px) {
+    
+    .hero .box {
+        margin: 4% auto;
+        padding: 0;
+        width: 80%;
+        box-shadow: none;
+    }
+    
+}
+
+
+    .hero.is-light {
+        background-color: var(--light);
+        color: #363636;
+    }
+
+
+    .hero-top {
+        background-color: var(--header-bg);
+        border-radius: 6px 6px 0 0;
+        padding: 20px;
+    }
+
+    .is-white {
+        color: whitesmoke !important;
+        font-weight: 300;
+    }
+
+    /* Filter Tags */
+
+    .is-tags {
+        background-color: var(--tags);
+        border-radius: 0 0 5px 6px;
+        margin: 0 10px;
+    }
+
+    .tag.is-light {
+        margin: 8px 1px;
+    }
+
+    .tag.is-info {
+        background-color:var(--header-bg) !important;
+        margin: 8px 1px;
+    }
+
+    /* Portfolio Cards */
+
+    #portfolio .columns {
+        margin: 0 5px 5px 5px;
+    }
+
+    .card {
+        color: whitesmoke;
+        border-radius: 13px;
+    }
+
+    .card-footer {
+        background-color: var(--header-bg);
+        border-radius: 0 0 13px 13px;
+    }
+
+    .card-footer-item {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .project-thumb {
+        border-radius: 12px 12px 0 0;
+    }
+
+    .filtered {
+        display: none;
+    }
