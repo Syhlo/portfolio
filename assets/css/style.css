@@ -26,9 +26,9 @@
     --tags: #939ba3;
 }
 
-html,body {
-    margin: 0;
-    padding: 0;
+/* Mobile fix */
+.columns {
+    margin-right: 0 !important;
 }
 
 .subtitle {
