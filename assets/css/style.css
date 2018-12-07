@@ -67,12 +67,8 @@ html,body {
         border-bottom: 2px solid var(--header);
     }
 
-    .navbar-start {
-        margin-left: 10px;
-    }
-
     .navbar-end {
-        margin-right: 20px;
+        padding-right: 20px;
     }
 
     .fa-envelope {
