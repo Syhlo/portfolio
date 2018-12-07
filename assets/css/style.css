@@ -26,11 +26,6 @@
     --tags: #939ba3;
 }
 
-/* Mobile fix */
-.columns {
-    margin-right: 0 !important;
-}
-
 .subtitle {
     padding-top: 5px;
 }
