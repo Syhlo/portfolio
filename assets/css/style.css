@@ -26,6 +26,10 @@
     --tags: #939ba3;
 }
 
+.columns {
+    margin: 0 !important;
+}
+
 .subtitle {
     padding-top: 5px;
 }
