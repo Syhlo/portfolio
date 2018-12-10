@@ -263,7 +263,8 @@
 
     
     .tag.clearFilter {
-        margin: auto 10px auto -5%;
+        margin-right: 10px;
+        margin-left: -5%;
     }
 
 
