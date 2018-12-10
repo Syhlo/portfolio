@@ -1,4 +1,3 @@
-
 // #-----------------#
 // #  Slider Toggle  #
 // #-----------------#
@@ -17,10 +16,24 @@ controller.addEventListener('click', () => {
     control.toggle('fa-chevron-up')
 })
 
+
+
 // #-----------------------------#
 // #  Navigation is-active link  #
 // #-----------------------------#
-const
+const anchors =
+    document.querySelectorAll('.navbar-menu .navbar-end .navbar-item')
+anchors.forEach((anchor) =>
+    anchor.addEventListener('click', activeNavLink))
+
+function activeNavLink(e) {
+    anchors.forEach((elem) => {
+        if (elem.classList.contains('active')) {
+            elem.classList.toggle('active')
+        }
+    })
+    e.currentTarget.classList.toggle('active')
+}
 
 
 
@@ -45,7 +58,7 @@ function filters() {
         filter[i].addEventListener('click', () => {
             // Set selected
             const target =
-                event.currentTarget;
+                event.currentTarget
             target.classList.toggle('is-info')
 
             // Store locally
@@ -54,7 +67,7 @@ function filters() {
     }
 }
 
-// Store Locally
+// Store locally
 function storeSelected(index, target) {
     const item =
         JSON.stringify({
