@@ -249,7 +249,7 @@
     }
     
     .tag {
-        margin: 8px 1px;
+        margin: 10px 1px;
         cursor: pointer;
     }
 
@@ -259,12 +259,12 @@
 
     .tag.is-info {
         background-color:var(--header-bg) !important;
-        margin: 8px 1px;
+        margin: 10px 1px;
     }
 
     
     .tag.clear-filters {
-        margin-right: 10px;
+        margin-right: 1%;
         margin-left: -5%;
     }
 
@@ -275,6 +275,8 @@
     .card {
         color: whitesmoke;
         border-radius: 13px;
+        /* width: 95%; */
+        margin: 10px;
     }
 
     .card-footer {
