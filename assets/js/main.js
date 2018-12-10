@@ -110,6 +110,7 @@ function clearFilters() {
             elem.classList.toggle('is-info')
         }
     })
+    sliderOpen()
 }
 
 // init
