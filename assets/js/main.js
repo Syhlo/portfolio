@@ -19,9 +19,9 @@ controller.addEventListener('click', () => {
 
 
 
-// #-----------------#
-// #  Filter select  #
-// #-----------------#
+// #-----------------------------#
+// #  Filter select and storage  #
+// #-----------------------------#
 const filter =
     document.querySelectorAll('.filter')
 const tags =
@@ -29,24 +29,24 @@ const tags =
 const storeFilters =
     JSON.parse(localStorage.getItem('selected')) || [];
 
-for (let i = 0; i < filter.length; i++) {
-    setSelected(i, filter[i])
-    filter[i].addEventListener('click', () => {
-        // Set selected
-        const target =
-            event.currentTarget;
-        target.classList.toggle('is-info')
+// Main filters logic
+function filters() {
+    for (let i = 0; i < filter.length; i++) {
+        // Set selected on reload
+        setSelected(i, filter[i])
 
-        // Store locally
-        storeSelected(i, target)
-    })
+        filter[i].addEventListener('click', () => {
+            // Set selected
+            const target =
+                event.currentTarget;
+            target.classList.toggle('is-info')
+
+            // Store locally
+            storeSelected(i, target)
+        })
+    }
 }
 
-// #------------------#
-// #  Filter storage  #
-// #------------------#
-
-// Store the state of the tags
 function storeSelected(index, target) {
     const item =
         JSON.stringify({
@@ -57,9 +57,10 @@ function storeSelected(index, target) {
     localStorage.setItem('selected', JSON.stringify(storeFilters))
 }
 
-// Set selected tags on reload
 function setSelected(index, target) {
     if (storeFilters[index] && JSON.parse(storeFilters[index]).selected === true) {
         target.classList.toggle('is-info');
     }
 }
+
+filters()
