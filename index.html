@@ -52,10 +52,11 @@
         <div class="hero-body nav-fix">
             <div class="center">
                 <h1 class="title is-1 main-text">Hi, I'm Matt!</h1>
-                <h2 class="subtitle is-6 main-text">I'm a front-end developer who loves to help people achieve their
+                <h2 class="subtitle is-6 main-text">I'm a front-end developer who loves helping people achieve their
                     dreams.</h2>
             </div>
         </div>
+        <div id="services"></div>
     </section>
 
     <section class="hero is-light has-text-centered">
@@ -72,7 +73,6 @@
                 </div>
             </div>
         </div>
-        <div id="services"></div>
 
         <!-- Services Tiles -->
         <div class="box">
@@ -95,11 +95,11 @@
                                 <h1 class="title is-4">About Me</h1>
                                 <p class="subtitle is-6">
                                     Hi, I'm Matt.
-                                    I enjoy problem solving, learning new things, and appreciate minimalist design.
+                                    I enjoy solving problems, learning new things, and responsive minimalist design.
                                 </p>
 
                                 <p class="subtitle is-6">
-                                    Let me know if there's anything you need help with! 🙂
+                                    Let me know if there's anything you might need help with! 🙂
                                 </p>
 
                                 <p class="subtitle is-6"><strong>Location:</strong> Connecticut, US</p>
@@ -119,11 +119,11 @@
                             <div class="content">
                                 <h1 class="title is-4">Languages</h1>
                                 <ul class="subtitle is-6">
-                                    <li>HTML</li>
-                                    <li>CSS/Frameworks</li>
                                     <li>JavaScript</li>
                                     <li>React</li>
                                     <li>Python</li>
+                                    <li>HTML</li>
+                                    <li>CSS/Frameworks</li>
                                 </ul>
                                 <br>
                             </div>
@@ -151,39 +151,44 @@
         </div>
     </section>
 
-
+    <div id="portfolio"></div>
     <!-- Projects Section -->
-    <section class="hero is-large is-light" id="portfolio">
+    <section class="hero is-large is-light">
         <div class="box has-text-centered">
 
             <div class="hero-top">
-                <h1 class="title is-5 is-white">Check out my latest work<a><i class="fa fa-chevron-up is-pulled-right"></i></a></h1>
+                <h1 class="title is-5 is-white">Check out my latest work<a><i class="fa fa-chevron-up control is-pulled-right"></i></a></h1>
             </div>
 
             <!-- Filters -->
-            <div class="is-tags">
-                <span class="tag is-info">
+            <div class="is-tags slider" id="slider">
+                <span class="tag filter">
                     <a id="html">HTML</a>
                 </span>
 
-                <span class="tag is-info">
+                <span class="tag filter">
                     <a id="js">JavaScript</a>
                 </span>
 
-                <span class="tag is-info">
+                <span class="tag filter">
                     <a id="css">CSS</a>
                 </span>
 
-                <span class="tag is-info">
+                <span class="tag filter">
                     <a id="python">Python</a>
                 </span>
 
-                <span class="tag is-info">
+                <span class="tag filter">
                     <a id="bulma">Bulma</a>
                 </span>
 
-                <span class="tag is-info">
+                <span class="tag filter">
                     <a id="react">React</a>
+                </span>
+                <br>
+
+                <span class="tag clearFilter is-info is-pulled-right">
+                    <a>Clear Filters</a>
                 </span>
             </div>
 
@@ -252,6 +257,17 @@
         </div>
     </section>
 
+    <footer class="footer hero is-dark">
+        <div class="container">
+            <div class="fabs">
+                <i class="fab fa-twitter is-pulled-right"></i>
+                <i class="fab fa-linkedin-in is-pulled-right"></i>
+                <i class="fab fa-github is-pulled-right"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
