@@ -251,7 +251,6 @@
     .tag {
         margin: 8px 1px;
         cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
     }
 
     .tag:hover {
