@@ -17,6 +17,11 @@ controller.addEventListener('click', () => {
     control.toggle('fa-chevron-up')
 })
 
+// #-----------------------------#
+// #  Navigation is-active link  #
+// #-----------------------------#
+const
+
 
 
 // #-----------------------------#
@@ -26,8 +31,10 @@ const filter =
     document.querySelectorAll('.filter')
 const tags =
     document.querySelector('.is-tags')
-const storeFilters =
-    JSON.parse(localStorage.getItem('selected')) || [];
+let storeFilters =
+    JSON.parse(localStorage.getItem('selected')) || []
+// Clear Filters button
+document.querySelector('.clear-filters').addEventListener('click', clearFilters)
 
 // Main filters logic
 function filters() {
@@ -47,6 +54,7 @@ function filters() {
     }
 }
 
+// Store Locally
 function storeSelected(index, target) {
     const item =
         JSON.stringify({
@@ -57,10 +65,23 @@ function storeSelected(index, target) {
     localStorage.setItem('selected', JSON.stringify(storeFilters))
 }
 
+// Set filters as selected
 function setSelected(index, target) {
     if (storeFilters[index] && JSON.parse(storeFilters[index]).selected === true) {
-        target.classList.toggle('is-info');
+        target.classList.toggle('is-info')
     }
 }
 
+// Clear localStorage & selected filters
+function clearFilters() {
+    storeFilters = []
+    localStorage.clear()
+    filter.forEach((elem) => {
+        if (elem.classList.contains('is-info')) {
+            elem.classList.toggle('is-info')
+        }
+    })
+}
+
+// init
 filters()
