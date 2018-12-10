@@ -14,6 +14,9 @@ controller.addEventListener('click', () => {
     sliderC.toggle('closed')
     control.toggle('fa-chevron-down')
     control.toggle('fa-chevron-up')
+
+    // Store locally
+    sliderOpen()
 })
 
 
@@ -49,8 +52,8 @@ let storeFilters =
 // Clear Filters button
 document.querySelector('.clear-filters').addEventListener('click', clearFilters)
 
-// Main filters logic
-function filters() {
+// Filter select logic
+function filterSelect() {
     for (let i = 0; i < filter.length; i++) {
         // Set selected on reload
         setSelected(i, filter[i])
@@ -78,10 +81,23 @@ function storeSelected(index, target) {
     localStorage.setItem('selected', JSON.stringify(storeFilters))
 }
 
+// Save whether slider is open
+function sliderOpen() {
+    const item = JSON.stringify({
+        sliderOpen:
+            !sliderC.contains('closed')
+    })
+    storeFilters[6] = item
+    localStorage.setItem('selected', JSON.stringify(storeFilters))
+}
+
 // Set filters as selected
 function setSelected(index, target) {
     if (storeFilters[index] && JSON.parse(storeFilters[index]).selected === true) {
         target.classList.toggle('is-info')
+    }
+    if (storeFilters[6] && JSON.parse(storeFilters[6]).sliderOpen === true) {
+        sliderC.remove('closed')
     }
 }
 
@@ -97,4 +113,4 @@ function clearFilters() {
 }
 
 // init
-filters()
+filterSelect()
