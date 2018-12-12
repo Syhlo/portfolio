@@ -276,10 +276,23 @@
 
     /* Portfolio Cards */
     
+    .column .card {
+        margin: 0 auto;
+    }
+
+    h3.subtitle {
+        margin-bottom: 10px !important;
+    }
+
     .card {
         color: whitesmoke;
         border-radius: 13px;
-        margin: 10px;
+        box-shadow: none;
+        width: 80%;
+    }
+
+    .card-image {
+        border: none;
     }
 
     .card-footer {
@@ -297,7 +310,7 @@
     }
 
     .filtered {
-        display: none;
+        opacity: .2;
     }
 
 /* 

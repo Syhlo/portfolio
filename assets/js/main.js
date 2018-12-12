@@ -1,6 +1,5 @@
-// #-----------------#
-// #  Slider Toggle  #
-// #-----------------#
+// ------------------------- Slider - Toggle state -------------------------
+
 const slider =
     document.getElementById('slider')
 const sliderC =
@@ -22,9 +21,10 @@ controller.addEventListener('click', () => {
 
 
 
-// #-----------------------------#
-// #  Navigation is-active link  #
-// #-----------------------------#
+
+
+// ------------------------- Active navigation link -------------------------
+
 const anchors =
     document.querySelectorAll('.navbar-menu .navbar-end .navbar-item')
 
@@ -42,9 +42,8 @@ function activeNavLink(e) {
 
 
 
-// #------------------#
-// #  Select filters  #
-// #------------------#
+// ------------------------- Select filters -------------------------
+
 // Filter tags
 const filters =
     document.querySelectorAll('.filter')
@@ -79,12 +78,11 @@ filter()
 
 
 
-// #-----------------------#
-// #  Filter the Projects  #
-// #-----------------------#
-// 0=html, 1=JS, 2=CSS, 3=Py, 4=Bulma, 5=React
+
+// ------------------------- Filter the Projects -------------------------
 
 // Object containing the projects
+// IDs: 0=html, 1=JS, 2=CSS, 3=Py, 4=Bulma, 5=React
 const projects = {
     portfolio: [0, 1, 2, 4],
     reactApp: [5],
@@ -99,15 +97,11 @@ let filtered = []
 let project = document.getElementsByName('project');
 
 function _filter(index) {
-    // Does not work because the for loop in filter is sending 0-5 as index, so checking if it's present
-    // Which means if there's more than one it will behave improperly
-
     // If the index is already present when filter is triggered
     if (index === filtered[index]) {
         // Show the hidden projects and set filter to NaN
-        showProjects(index)
         filtered[index] = NaN
-
+        showProjects(index)
     }
     else {
         // Otherwise, set filter to ID & hide projects without ID
@@ -120,8 +114,11 @@ function hideProjects(index) {
     // For each project in projects
     Object.keys(projects).forEach((e, i) => {
         // if the project's array does not contain every element from filtered array & filtered[index] is not NaN
-        if (!compareArrays(projects[e], filtered) && filtered[index] === index) {
+        if (!compareArrays(projects[e], filtered)) {
             // filter those items out
+            if (project[i].classList.contains('filtered')) {
+                return
+            }
             project[i].classList.toggle('filtered')
         }
     })
@@ -130,7 +127,7 @@ function hideProjects(index) {
 function showProjects(index) {
     Object.keys(projects).forEach((e, i) => {
         // Show all filtered projects
-        if (project[i].classList.contains('filtered')) {
+        if (project[i].classList.contains('filtered') && compareArrays(projects[e], filtered)) {
             project[i].classList.toggle('filtered')
         }
     })
@@ -143,8 +140,7 @@ function compareArrays(superset, subset) {
         return false;
     }
 
-    // Iterate over every subset value (excluding NaNs)
-    // Return true if all values in subset are present in superset
+    // Iterate over every subset value comparing superset values (excluding NaNs)
     return removeNaN(subset).every(function (value) {
         return (superset.indexOf(value) >= 0);
     });
@@ -158,9 +154,9 @@ function removeNaN(array) {
 
 
 
-// #-----------------#
-// #  Local Storage  #
-// #-----------------#
+
+// ------------------------- Local Storage -------------------------
+
 // Clear filters button
 document.querySelector('.clear-filters').addEventListener('click', clearFilters)
 
