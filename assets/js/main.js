@@ -133,20 +133,15 @@ function showProjects(index) {
 
 // Compare filtered array to the project's array
 function compareArrays(superset, subset) {
-    // Subset is empty
-    if (0 === subset.length) {
-        return false;
-    }
-
-    // Iterate over every subset value comparing superset values (excluding NaNs)
-    return removeNaN(subset).every(function (value) {
-        return (superset.indexOf(value) >= 0);
-    });
+    if (0 === subset.length) { return false; }
+    return removeNaN(subset).every(value =>
+        (superset.indexOf(value) >= 0))
 }
 
 // Removes all NaNs from filtered array
 function removeNaN(array) {
-    const arr = array.filter(val => val === 0 ? true : val)
+    const arr = array.filter(val =>
+        val === 0 ? true : val)
     return arr
 }
 
@@ -193,15 +188,20 @@ function setSelected(index, target) {
 }
 
 
-// Clear localStorage & selected filters
+// Clear localStorage, selected filters, and reset filtered state
 function clearFilters() {
     storeFilters = []
     localStorage.clear()
-    filters.forEach((elem) => {
-        if (elem.classList.contains('is-info')) {
-            elem.classList.toggle('is-info')
+    filters.forEach((item => {
+        if (item.classList.contains('is-info')) {
+            item.classList.toggle('is-info')
+        }
+    }))
+    filtered = []
+    project.forEach((item) => {
+        if (item.classList.contains('filtered')) {
+            item.classList.toggle('filtered')
         }
     })
-    filtered = [];
     storeSliderState()
 }
