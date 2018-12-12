@@ -64,7 +64,9 @@ function filter() {
 
             // Store locally
             storeSelected(i, target)
-            _filter(i)
+
+            // disabled until working
+            // _filter(i)
         })
     }
 }
