@@ -45,19 +45,22 @@ function activeNavLink(e) {
 // #------------------#
 // #  Select filters  #
 // #------------------#
+// Filter tags
 const filters =
     document.querySelectorAll('.filter')
+
+// Local storage variable
 let storeFilters =
     JSON.parse(localStorage.getItem('selected')) || []
 
-// Filter select logic
+// Filter selection logic
 function filter() {
     for (let i = 0; i < filters.length; i++) {
-        // Set selected on reload
+        // Set selected from local storage
         setSelected(i, filters[i])
 
         filters[i].addEventListener('click', () => {
-            // Set selected
+            // Visual selection
             const target =
                 event.currentTarget
             target.classList.toggle('is-info')
@@ -65,8 +68,8 @@ function filter() {
             // Store locally
             storeSelected(i, target)
 
-            // disabled until working
-            // _filter(i)
+            // "Filter the Projects"
+            _filter(i)
         })
     }
 }
@@ -79,6 +82,9 @@ filter()
 // #-----------------------#
 // #  Filter the Projects  #
 // #-----------------------#
+// 0=html, 1=JS, 2=CSS, 3=Py, 4=Bulma, 5=React
+
+// Object containing the projects
 const projects = {
     portfolio: [0, 1, 2, 4],
     reactApp: [5],
@@ -86,26 +92,28 @@ const projects = {
     lastProject: []
 }
 
-// Filtered IDs
+// Active Filter IDs
 let filtered = []
 
-// Index of projects on site
+// Projects on site
 let project = document.getElementsByName('project');
 
 function _filter(index) {
-    // Manage filtered results
+    // Does not work because the for loop in filter is sending 0-5 as index, so checking if it's present
+    // Which means if there's more than one it will behave improperly
+
+    // If the index is already present when filter is triggered
     if (index === filtered[index]) {
+        // Show the hidden projects and set filter to NaN
+        showProjects(index)
         filtered[index] = NaN
 
-    } else {
+    }
+    else {
+        // Otherwise, set filter to ID & hide projects without ID
         filtered[index] = index
-        showProjects(index)
         hideProjects(index)
     }
-
-    console.log(filtered)
-
-
 }
 
 function hideProjects(index) {
@@ -121,19 +129,31 @@ function hideProjects(index) {
 
 function showProjects(index) {
     Object.keys(projects).forEach((e, i) => {
-        if (!filtered[index] === index && project[i].classList.contains('filtered')) {
+        // Show all filtered projects
+        if (project[i].classList.contains('filtered')) {
             project[i].classList.toggle('filtered')
         }
     })
 }
 
+// Compare filtered array to the project's array
 function compareArrays(superset, subset) {
+    // Subset is empty
     if (0 === subset.length) {
         return false;
     }
-    return subset.every(function (value) {
+
+    // Iterate over every subset value (excluding NaNs)
+    // Return true if all values in subset are present in superset
+    return removeNaN(subset).every(function (value) {
         return (superset.indexOf(value) >= 0);
     });
+}
+
+// Removes all NaNs from filtered array
+function removeNaN(array) {
+    const arr = array.filter(val => val === 0 ? true : val)
+    return arr
 }
 
 
