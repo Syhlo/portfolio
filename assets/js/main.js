@@ -1,4 +1,4 @@
-// ------------------------- Slider - Toggle state -------------------------
+// ------------------------- Slider - Toggle state ------------------------- //
 
 const slider =
     document.getElementById('slider')
@@ -21,7 +21,7 @@ controller.addEventListener('click', () => {
 
 
 
-// ------------------------- Active navigation link -------------------------
+// ------------------------- Active navigation link ------------------------- //
 
 const anchors =
     document.querySelectorAll('.navbar-menu .navbar-end .navbar-item')
@@ -40,7 +40,7 @@ function activeNavLink(e) {
 
 
 
-// ------------------------- Select filters -------------------------
+// ------------------------- Select filters ------------------------- //
 
 // Filter tags
 const filters =
@@ -76,7 +76,7 @@ filter()
 
 
 
-// ------------------------- Filter the Projects -------------------------
+// ------------------------- Filter the Projects ------------------------- //
 
 // Object containing the projects
 // IDs: 0=html, 1=JS, 2=CSS, 3=Py, 4=Bulma, 5=React
@@ -110,12 +110,13 @@ function _filter(index) {
 function hideProjects(index) {
     // For each project in projects
     Object.keys(projects).forEach((e, i) => {
-        // if the project's array does not contain every element from filtered array & filtered[index] is not NaN
+        // if the project's array does not contain every item from filtered array then ..
         if (!compareArrays(projects[e], filtered)) {
-            // filter those items out
+            // Do not filter already filtered projects
             if (project[i].classList.contains('filtered')) {
                 return
             }
+            // filter those items out
             project[i].classList.toggle('filtered')
         }
     })
@@ -151,7 +152,7 @@ function removeNaN(array) {
 
 
 
-// ------------------------- Local Storage -------------------------
+// ------------------------- Local Storage ------------------------- //
 
 // Clear filters button
 document.querySelector('.clear-filters').addEventListener('click', clearFilters)
