@@ -21,8 +21,6 @@ controller.addEventListener('click', () => {
 
 
 
-
-
 // ------------------------- Active navigation link -------------------------
 
 const anchors =
@@ -75,7 +73,6 @@ function filter() {
 
 // Initiate
 filter()
-
 
 
 
@@ -151,7 +148,6 @@ function removeNaN(array) {
     const arr = array.filter(val => val === 0 ? true : val)
     return arr
 }
-
 
 
 
