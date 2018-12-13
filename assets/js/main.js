@@ -53,9 +53,15 @@ let storeFilters =
 // Filter selection logic
 function filter() {
     for (let i = 0; i < filters.length; i++) {
-        // Set selected from local storage
-        setSelected(i, filters[i])
 
+        // Reload selected filters
+        setSelected(i, filters[i])
+        // Reload the filtered projects
+        if (filtered !== 0 && storeFilters[7]) {
+            filtered.every((val) => _filter(val))
+        }
+
+        // Filter selection
         filters[i].addEventListener('click', () => {
             // Visual selection
             const target =
@@ -65,14 +71,11 @@ function filter() {
             // Store locally
             storeSelected(i, target)
 
-            // "Filter the Projects"
+            // Project filter
             _filter(i)
         })
     }
 }
-
-// Initiate
-filter()
 
 
 
@@ -88,7 +91,7 @@ const projects = {
 }
 
 // Active Filter IDs
-let filtered = []
+let filtered = JSON.parse(storeFilters[7]).filtered || []
 
 // Projects on site
 let project = document.getElementsByName('project');
@@ -105,6 +108,9 @@ function _filter(index) {
         filtered[index] = index
         hideProjects(index)
     }
+
+    // Store locally
+    filteredProjects()
 }
 
 function hideProjects(index) {
@@ -145,13 +151,23 @@ function removeNaN(array) {
     return arr
 }
 
-
+// Initiate
+filter()
 
 // ------------------------- Local Storage ------------------------- //
 
 // Clear filters button
 document.querySelector('.clear-filters').addEventListener('click', clearFilters)
 
+// Slider State
+function storeSliderState() {
+    const item = JSON.stringify({
+        sliderOpen:
+            !sliderC.contains('closed')
+    })
+    storeFilters[6] = item
+    localStorage.setItem('selected', JSON.stringify(storeFilters))
+}
 
 // Selected Filters
 function storeSelected(index, target) {
@@ -164,28 +180,31 @@ function storeSelected(index, target) {
     localStorage.setItem('selected', JSON.stringify(storeFilters))
 }
 
-
-// Slider State
-function storeSliderState() {
-    const item = JSON.stringify({
-        sliderOpen:
-            !sliderC.contains('closed')
-    })
-    storeFilters[6] = item
+// Filtered Projects
+function filteredProjects() {
+    const item =
+        JSON.stringify({
+            filtered: filtered
+        })
+    storeFilters[7] = item
     localStorage.setItem('selected', JSON.stringify(storeFilters))
 }
 
-// On-load selected filters
+// Parse localStorage on reload
 function setSelected(index, target) {
+    // Reload filter selection
     if (storeFilters[index] && JSON.parse(storeFilters[index]).selected === true) {
         target.classList.toggle('is-info')
 
     }
+    // Reload the slider state
     if (storeFilters[6] && JSON.parse(storeFilters[6]).sliderOpen === true) {
         sliderC.remove('closed')
         sliderC.add('opened')
     }
 }
+
+
 
 
 // Clear localStorage, selected filters, and reset filtered state
