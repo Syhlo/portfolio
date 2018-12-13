@@ -16,7 +16,7 @@ controller.addEventListener('click', () => {
     control.toggle('fa-chevron-up')
 
     // Store locally
-    storeSliderState()
+    sliderState()
 })
 
 
@@ -43,29 +43,30 @@ function activeNavLink(e) {
 // ------------------------- Select filters ------------------------- //
 
 // Filter tags
-const filters =
+const filterTags =
     document.querySelectorAll('.filter')
 
-// Local storage variable
-let storeFilters =
-    JSON.parse(localStorage.getItem('selected')) || []
+// storage variable
+let data =
+    JSON.parse(sessionStorage.getItem('data')) || []
 
 // Filter selection logic
-function filter() {
-    for (let i = 0; i < filters.length; i++) {
+function selectFilter() {
+    for (let i = 0; i < filterTags.length; i++) {
         // Reload selected filters & slider state
-        setSelected(i, filters[i])
-        filters[i].addEventListener('click', () => {
+        restoreData(i, filterTags[i])
+
+        filterTags[i].addEventListener('click', () => {
             // Visual selection
             const target =
                 event.currentTarget
             target.classList.toggle('is-info')
 
             // Store locally
-            storeSelected(i, target)
+            selectedState(i, target)
 
             // Project filter
-            _filter(i)
+            filterItems(i)
         })
     }
 }
@@ -74,9 +75,8 @@ function filter() {
 
 // ------------------------- Filter the Projects ------------------------- //
 
-// Object containing the projects
 // IDs: 0=html, 1=JS, 2=CSS, 3=Py, 4=Bulma, 5=React
-const projects = {
+const projectIDs = {
     portfolio: [0, 1, 2, 4],
     reactApp: [5],
     anotherApp: [5],
@@ -84,53 +84,55 @@ const projects = {
 }
 
 // Active Filter IDs
-let filterItems = []
+let filterList = []
 
 // Projects on site
 let project = document.getElementsByName('project');
 
-function _filter(index) {
-    // If the index is already present when filter is triggered
-    if (index === filterItems[index]) {
-        filterItems[index] = NaN
+function filterItems(index) {
+    // Index is already present
+    if (index === filterList[index]) {
+        filterList[index] = NaN
         showProjects(index)
     }
     else {
-        filterItems[index] = index
+        filterList[index] = index
         hideProjects(index)
     }
 
     // Store locally
-    // filteredProjects()
+    filteredState()
 }
-
 
 
 // -------- methods -------- //
 
 function hideProjects(index) {
     // For each project in projects
-    Object.keys(projects).forEach((e, i) => {
-        // if the project's array does not contain every item from filtered array then ..
-        if (!compareArrays(projects[e], filterItems)) {
+    Object.keys(projectIDs).forEach((e, i) => {
+        // project's array does not contain every item from filtered array 
+        if (!compareArrays(projectIDs[e], filterList)) {
             // Do not filter already filtered projects
             if (project[i].classList.contains('filtered')) {
                 return
             }
-            // filter those items out
+            // filter the items out
             project[i].classList.toggle('filtered')
         }
     })
 }
 
 function showProjects(index) {
-    Object.keys(projects).forEach((e, i) => {
+    Object.keys(projectIDs).forEach((e, i) => {
         // Show all filtered projects
-        if (project[i].classList.contains('filtered') && compareArrays(projects[e], filterItems)) {
+        if (project[i].classList.contains('filtered') && compareArrays(projectIDs[e], filterList)) {
             project[i].classList.toggle('filtered')
         }
     })
 }
+
+
+
 
 // Compare filtered array to the project's array
 function compareArrays(superset, subset) {
@@ -147,81 +149,88 @@ function removeNaN(array) {
 }
 
 // Initiate
-filter()
+selectFilter()
 
-// ------------------------- Local Storage ------------------------- //
+// ------------------------- Storage ------------------------- //
 
 // Clear filters button
 document.querySelector('.clear-filters').addEventListener('click', clearFilters)
 
-// Slider State
-function storeSliderState() {
-    const item = JSON.stringify({
-        sliderOpen:
-            !sliderC.contains('closed')
-    })
-    storeFilters[6] = item
-    localStorage.setItem('selected', JSON.stringify(storeFilters))
-}
 
-// Selected Filters
-function storeSelected(index, target) {
-    const item =
-        JSON.stringify({
-            selected:
-                target.classList.contains('is-info')
-        })
-    storeFilters[index] = item
-    localStorage.setItem('selected', JSON.stringify(storeFilters))
-}
-
-// Filtered Projects
-function filteredProjects() {
-    const item =
-        JSON.stringify({
-            filterItems: filterItems
-        })
-    storeFilters[7] = item
-    localStorage.setItem('selected', JSON.stringify(storeFilters))
-}
-
-// Parse localStorage on reload
-function setSelected(index, target) {
-    // Reload filter selection
-    if (storeFilters[index] && JSON.parse(storeFilters[index]).selected === true) {
+function restoreData(index, target) {
+    // Restore filter selections
+    if (data[index] && JSON.parse(data[index]).selected === true) {
         target.classList.toggle('is-info')
 
     }
-    // Reload the filtered projects
-    // if (filtered !== 0 && storeFilters[7]) {
-    //     filtered.every((val) => _filter(val))
-    // }
-    // Reload the slider state
-    if (storeFilters[6] && JSON.parse(storeFilters[6]).sliderOpen === true) {
+    // Restore slider state
+    if (data[6] && JSON.parse(data[6]).sliderOpen === true) {
         sliderC.remove('closed')
         sliderC.add('opened')
         control.remove('fa-chevron-down')
         control.add('fa-chevron-up')
     }
+    // Restore filtered projects
+    console.log(JSON.parse(data[7]).list.length)
+    if (data[7] && JSON.parse(data[7]).list.length > 0) {
+        filterList = JSON.parse(data[7]).list
+        filterList.every((val) => filterItems(val))
+    }
+}
+
+
+
+function selectedState(index, target) {
+    const item =
+        JSON.stringify({
+            selected:
+                target.classList.contains('is-info')
+        })
+    data[index] = item
+    sessionStorage.setItem('data', JSON.stringify(data))
 }
 
 
 
 
-// Clear localStorage, selected filters, and reset filtered state
+
+function filteredState() {
+    const item =
+        JSON.stringify({
+            list: filterList
+        })
+    data[7] = item
+    sessionStorage.setItem('data', JSON.stringify(data))
+}
+
+
+
+
+function sliderState() {
+    const item = JSON.stringify({
+        sliderOpen:
+            !sliderC.contains('closed')
+    })
+    data[6] = item
+    sessionStorage.setItem('data', JSON.stringify(data))
+}
+
+
+
+
 function clearFilters() {
-    storeFilters = []
-    localStorage.clear()
-    filters.forEach((item => {
+    data = []
+    sessionStorage.clear()
+    filterTags.forEach((item => {
         if (item.classList.contains('is-info')) {
             item.classList.toggle('is-info')
         }
     }))
-    filtered = []
+    filterList = []
     project.forEach((item) => {
         if (item.classList.contains('filtered')) {
             item.classList.toggle('filtered')
         }
     })
-    storeSliderState()
+    sliderState()
 }
