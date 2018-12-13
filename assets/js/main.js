@@ -1,4 +1,4 @@
-// Version: 0.9
+// Version: 0.8.1
 
 // ------------------------- Slider - Toggle state ------------------------- //
 
@@ -63,7 +63,6 @@ function selectFilter() {
     for (let i = 0; i < filterTags.length; i++) {
         // Reload selected filters & slider state
         restoreData(i, filterTags[i])
-
         filterTags[i].addEventListener('click', () => {
             // Visual selection
             const target =
@@ -94,7 +93,7 @@ const projectIDs = {
 
 
 // Active Filter IDs
-let filterList = []
+let filterList = [null, null, null, null, null]
 
 
 // Projects on site
@@ -102,10 +101,9 @@ let project = document.getElementsByName('project');
 
 
 function filterItems(index) {
-    console.log(index)
     // Index is already present
     if (index === filterList[index]) {
-        filterList[index] = NaN
+        filterList[index] = null
         showProjects(index)
     }
     else {
@@ -143,13 +141,13 @@ function showProjects() {
 // Used to see if projectIDs arrays contain filterList array values
 function compareArrays(superset, subset) {
     if (0 === subset.length) { return false; }
-    return removeNaN(subset).every(value =>
+    return removeNull(subset).every(value =>
         (superset.indexOf(value) >= 0))
 }
 
 
 // Removes all falsy values from filterList array
-function removeNaN(array) {
+function removeNull(array) {
     const arr = array.filter(value =>
         value === 0 ? true : value)
     return arr
@@ -171,22 +169,23 @@ function restoreData(index, target) {
     // Restore filter selections
     if (data[index] && JSON.parse(data[index]).selected === true) {
         target.classList.toggle('is-info')
-
-    }
-
-    // Restore filtered projects
-    if (data[6]) {
-        filterList = JSON.parse(data[6]).list
-        filterList.forEach(() => filterItems(index))
     }
 
     // Restore slider state
-    if (data[7] && JSON.parse(data[7]).sliderOpen === true) {
+    if (data[6] && JSON.parse(data[6]).sliderOpen === true) {
         sliderC.remove('closed')
         sliderC.add('opened')
         control.remove('fa-chevron-down')
         control.add('fa-chevron-up')
     }
+
+    // Restore filtered projects
+    // if (data[7]) {
+    //     filterList = JSON.parse(data[7]).list
+    //     filterList.forEach((value) => {
+    //         filterItems(value)
+    //     })
+    // }
 }
 
 
@@ -206,7 +205,7 @@ function filteredState() {
         JSON.stringify({
             list: filterList
         })
-    data[6] = item
+    data[7] = item
     sessionStorage.setItem('data', JSON.stringify(data))
 }
 
@@ -216,7 +215,7 @@ function sliderState() {
         sliderOpen:
             !sliderC.contains('closed')
     })
-    data[7] = item
+    data[6] = item
     sessionStorage.setItem('data', JSON.stringify(data))
 }
 
