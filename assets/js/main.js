@@ -53,15 +53,8 @@ let storeFilters =
 // Filter selection logic
 function filter() {
     for (let i = 0; i < filters.length; i++) {
-
-        // Reload selected filters
+        // Reload selected filters & slider state
         setSelected(i, filters[i])
-        // Reload the filtered projects
-        if (filtered !== 0 && storeFilters[7]) {
-            filtered.every((val) => _filter(val))
-        }
-
-        // Filter selection
         filters[i].addEventListener('click', () => {
             // Visual selection
             const target =
@@ -196,6 +189,10 @@ function setSelected(index, target) {
     if (storeFilters[index] && JSON.parse(storeFilters[index]).selected === true) {
         target.classList.toggle('is-info')
 
+    }
+    // Reload the filtered projects
+    if (filtered !== 0 && storeFilters[7]) {
+        filtered.every((val) => _filter(val))
     }
     // Reload the slider state
     if (storeFilters[6] && JSON.parse(storeFilters[6]).sliderOpen === true) {
