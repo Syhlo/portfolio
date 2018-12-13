@@ -84,34 +84,35 @@ const projects = {
 }
 
 // Active Filter IDs
-let filtered = JSON.parse(storeFilters[7]).filtered || []
-console.log(filtered)
+let filterItems = []
 
 // Projects on site
 let project = document.getElementsByName('project');
 
 function _filter(index) {
     // If the index is already present when filter is triggered
-    if (index === filtered[index]) {
-        // Show the hidden projects and set filter to NaN
-        filtered[index] = NaN
+    if (index === filterItems[index]) {
+        filterItems[index] = NaN
         showProjects(index)
     }
     else {
-        // Otherwise, set filter to ID & hide projects without ID
-        filtered[index] = index
+        filterItems[index] = index
         hideProjects(index)
     }
 
     // Store locally
-    filteredProjects()
+    // filteredProjects()
 }
+
+
+
+// -------- methods -------- //
 
 function hideProjects(index) {
     // For each project in projects
     Object.keys(projects).forEach((e, i) => {
         // if the project's array does not contain every item from filtered array then ..
-        if (!compareArrays(projects[e], filtered)) {
+        if (!compareArrays(projects[e], filterItems)) {
             // Do not filter already filtered projects
             if (project[i].classList.contains('filtered')) {
                 return
@@ -125,7 +126,7 @@ function hideProjects(index) {
 function showProjects(index) {
     Object.keys(projects).forEach((e, i) => {
         // Show all filtered projects
-        if (project[i].classList.contains('filtered') && compareArrays(projects[e], filtered)) {
+        if (project[i].classList.contains('filtered') && compareArrays(projects[e], filterItems)) {
             project[i].classList.toggle('filtered')
         }
     })
@@ -178,7 +179,7 @@ function storeSelected(index, target) {
 function filteredProjects() {
     const item =
         JSON.stringify({
-            filtered: filtered
+            filterItems: filterItems
         })
     storeFilters[7] = item
     localStorage.setItem('selected', JSON.stringify(storeFilters))
@@ -192,9 +193,9 @@ function setSelected(index, target) {
 
     }
     // Reload the filtered projects
-    if (filtered !== 0 && storeFilters[7]) {
-        filtered.every((val) => _filter(val))
-    }
+    // if (filtered !== 0 && storeFilters[7]) {
+    //     filtered.every((val) => _filter(val))
+    // }
     // Reload the slider state
     if (storeFilters[6] && JSON.parse(storeFilters[6]).sliderOpen === true) {
         sliderC.remove('closed')
