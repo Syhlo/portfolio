@@ -187,6 +187,10 @@
         width: 80%;
         box-shadow: none;
     }
+
+    .filtered {
+        display: none;
+    }
     
 }
 
@@ -199,6 +203,10 @@
         padding: 0;
         width: 80%;
         box-shadow: none;
+    }
+
+    .filtered {
+        opacity: .2;
     }
     
 }
@@ -308,10 +316,6 @@
 
     .project-thumb {
         border-radius: 12px 12px 0 0;
-    }
-
-    .filtered {
-        opacity: .2;
     }
 
 /* 
