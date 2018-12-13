@@ -84,7 +84,8 @@ const projects = {
 }
 
 // Active Filter IDs
-let filtered = [] // JSON.parse(storeFilters[7]).filtered ||
+let filtered = JSON.parse(storeFilters[7]).filtered || []
+console.log(filtered)
 
 // Projects on site
 let project = document.getElementsByName('project');
@@ -103,7 +104,7 @@ function _filter(index) {
     }
 
     // Store locally
-    // filteredProjects()
+    filteredProjects()
 }
 
 function hideProjects(index) {
@@ -191,13 +192,15 @@ function setSelected(index, target) {
 
     }
     // Reload the filtered projects
-    // if (filtered !== 0 && storeFilters[7]) {
-    //     filtered.every((val) => _filter(val))
-    // }
+    if (filtered !== 0 && storeFilters[7]) {
+        filtered.every((val) => _filter(val))
+    }
     // Reload the slider state
     if (storeFilters[6] && JSON.parse(storeFilters[6]).sliderOpen === true) {
         sliderC.remove('closed')
         sliderC.add('opened')
+        control.remove('fa-chevron-down')
+        control.add('fa-chevron-up')
     }
 }
 
