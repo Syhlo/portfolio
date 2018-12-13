@@ -1,13 +1,17 @@
+// Version: 0.8.1
+
 // ------------------------- Slider - Toggle state ------------------------- //
 
 const slider =
     document.getElementById('slider')
 const sliderC =
     slider.classList
+
 const controller =
     document.querySelector('.control')
 const control =
     controller.classList
+
 
 controller.addEventListener('click', () => {
     sliderC.toggle('closed')
@@ -26,8 +30,10 @@ controller.addEventListener('click', () => {
 const anchors =
     document.querySelectorAll('.navbar-menu .navbar-end .navbar-item')
 
+
 anchors.forEach((anchor) =>
     anchor.addEventListener('click', activeNavLink))
+
 
 function activeNavLink(e) {
     anchors.forEach((elem) => {
@@ -46,9 +52,11 @@ function activeNavLink(e) {
 const filterTags =
     document.querySelectorAll('.filter')
 
+
 // storage variable
 let data =
     JSON.parse(sessionStorage.getItem('data')) || []
+
 
 // Filter selection logic
 function selectFilter() {
@@ -83,11 +91,14 @@ const projectIDs = {
     lastProject: []
 }
 
+
 // Active Filter IDs
 let filterList = []
 
+
 // Projects on site
 let project = document.getElementsByName('project');
+
 
 function filterItems(index) {
     // Index is already present
@@ -122,6 +133,7 @@ function hideProjects(index) {
     })
 }
 
+
 function showProjects(index) {
     Object.keys(projectIDs).forEach((e, i) => {
         // Show all filtered projects
@@ -132,16 +144,15 @@ function showProjects(index) {
 }
 
 
-
-
-// Compare filtered array to the project's array
+// Used to see if projectIDs arrays contain filterList array values
 function compareArrays(superset, subset) {
     if (0 === subset.length) { return false; }
     return removeNaN(subset).every(value =>
         (superset.indexOf(value) >= 0))
 }
 
-// Removes all NaNs from filtered array
+
+// Removes all falsy values from filterList array
 function removeNaN(array) {
     const arr = array.filter(val =>
         val === 0 ? true : val)
@@ -179,7 +190,6 @@ function restoreData(index, target) {
 }
 
 
-
 function selectedState(index, target) {
     const item =
         JSON.stringify({
@@ -189,9 +199,6 @@ function selectedState(index, target) {
     data[index] = item
     sessionStorage.setItem('data', JSON.stringify(data))
 }
-
-
-
 
 
 function filteredState() {
@@ -204,8 +211,6 @@ function filteredState() {
 }
 
 
-
-
 function sliderState() {
     const item = JSON.stringify({
         sliderOpen:
@@ -214,8 +219,6 @@ function sliderState() {
     data[6] = item
     sessionStorage.setItem('data', JSON.stringify(data))
 }
-
-
 
 
 function clearFilters() {
