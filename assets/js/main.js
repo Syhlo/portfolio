@@ -1,4 +1,4 @@
-// Version: 0.8.1
+// Version: 0.9
 
 // ------------------------- Slider - Toggle state ------------------------- //
 
@@ -75,6 +75,7 @@ function selectFilter() {
 
             // Project filter
             filterItems(i)
+            filteredState()
         })
     }
 }
@@ -101,6 +102,7 @@ let project = document.getElementsByName('project');
 
 
 function filterItems(index) {
+    console.log(index)
     // Index is already present
     if (index === filterList[index]) {
         filterList[index] = NaN
@@ -110,33 +112,27 @@ function filterItems(index) {
         filterList[index] = index
         hideProjects(index)
     }
-
-    // Store locally
-    filteredState()
 }
 
 
 // -------- methods -------- //
 
-function hideProjects(index) {
-    // For each project in projects
+function hideProjects() {
     Object.keys(projectIDs).forEach((e, i) => {
-        // project's array does not contain every item from filtered array 
+        // projectIDs array does not contain all filterList values
         if (!compareArrays(projectIDs[e], filterList)) {
-            // Do not filter already filtered projects
             if (project[i].classList.contains('filtered')) {
                 return
             }
-            // filter the items out
             project[i].classList.toggle('filtered')
         }
     })
 }
 
 
-function showProjects(index) {
+function showProjects() {
     Object.keys(projectIDs).forEach((e, i) => {
-        // Show all filtered projects
+        // project contains filtered & projectIDs contains all filterList values
         if (project[i].classList.contains('filtered') && compareArrays(projectIDs[e], filterList)) {
             project[i].classList.toggle('filtered')
         }
@@ -154,13 +150,16 @@ function compareArrays(superset, subset) {
 
 // Removes all falsy values from filterList array
 function removeNaN(array) {
-    const arr = array.filter(val =>
-        val === 0 ? true : val)
+    const arr = array.filter(value =>
+        value === 0 ? true : value)
     return arr
 }
 
 // Initiate
 selectFilter()
+
+
+
 
 // ------------------------- Storage ------------------------- //
 
@@ -174,17 +173,19 @@ function restoreData(index, target) {
         target.classList.toggle('is-info')
 
     }
+
+    // Restore filtered projects
+    if (data[6]) {
+        filterList = JSON.parse(data[6]).list
+        filterList.forEach(() => filterItems(index))
+    }
+
     // Restore slider state
-    if (data[6] && JSON.parse(data[6]).sliderOpen === true) {
+    if (data[7] && JSON.parse(data[7]).sliderOpen === true) {
         sliderC.remove('closed')
         sliderC.add('opened')
         control.remove('fa-chevron-down')
         control.add('fa-chevron-up')
-    }
-    // Restore filtered projects
-    if (data[7] && JSON.parse(data[7]).list.length > 0) {
-        filterList = JSON.parse(data[7]).list
-        filterList.every((val) => filterItems(val))
     }
 }
 
@@ -205,7 +206,7 @@ function filteredState() {
         JSON.stringify({
             list: filterList
         })
-    data[7] = item
+    data[6] = item
     sessionStorage.setItem('data', JSON.stringify(data))
 }
 
@@ -215,7 +216,7 @@ function sliderState() {
         sliderOpen:
             !sliderC.contains('closed')
     })
-    data[6] = item
+    data[7] = item
     sessionStorage.setItem('data', JSON.stringify(data))
 }
 
