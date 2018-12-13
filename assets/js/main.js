@@ -182,7 +182,6 @@ function restoreData(index, target) {
         control.add('fa-chevron-up')
     }
     // Restore filtered projects
-    console.log(JSON.parse(data[7]).list.length)
     if (data[7] && JSON.parse(data[7]).list.length > 0) {
         filterList = JSON.parse(data[7]).list
         filterList.every((val) => filterItems(val))
