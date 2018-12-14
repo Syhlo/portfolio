@@ -58,23 +58,23 @@ let data =
     JSON.parse(sessionStorage.getItem('data')) || []
 
 
-// Filter selection logic
 function selectFilter() {
     // Reload stored data
     restoreData()
 
-    for (let i = 0; i < filterTags.length; i++) {
-        filterTags[i].addEventListener('click', () => {
+    // Filter selection
+    for (let index = 0; index < filterTags.length; index++) {
+        filterTags[index].addEventListener('click', () => {
             // Visual selection
             const target =
                 event.currentTarget
             target.classList.toggle('is-info')
 
             // Store locally
-            selectedState(i, target)
+            selectedState(index, target)
 
             // Project filter
-            filterItems(i)
+            filterItems(index)
         })
     }
 }
