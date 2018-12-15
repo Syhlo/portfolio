@@ -8,7 +8,7 @@ const sliderC =
     slider.classList
 
 const controller =
-    document.querySelector('.control')
+    document.querySelector('.projects-tab')
 const control =
     controller.classList
 
@@ -43,6 +43,10 @@ function activeNavLink(e) {
     })
     e.currentTarget.classList.toggle('active')
 }
+
+// ------------------------- modals ------------------------- //
+
+
 
 
 
