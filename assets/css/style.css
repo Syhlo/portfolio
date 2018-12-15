@@ -25,6 +25,7 @@
     /* Misc */
     --skillset: #f5f7fa;
     --tags: #939ba3;
+    --modal: #b1b1b1;
 }
 
     /* Mobile Columns Fix */
@@ -58,7 +59,7 @@ html {
     }
 
     .navbar-item {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 300;
     }
 
@@ -356,4 +357,29 @@ html {
 
     .container .fab:hover {
         color: #adb3b9;
+    }
+
+ /* 
+#-----------------#
+#  Modal Section  #
+#-----------------#
+*/   
+
+    .modal-content .box {
+        border-radius: 0 !important;
+    }
+
+    .input, .textarea {
+        font-size: 14px;
+        resize: none;
+    }
+
+    .input::placeholder, .textarea::placeholder {
+        color: var(--modal);
+    }
+
+    .modal-card-foot {
+        background-color: white;
+        padding: 10px 0 0 0;
+        border: 0;
     }
