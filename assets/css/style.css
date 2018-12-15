@@ -147,7 +147,7 @@ html {
     
     .notification.is-info {
         background-color: var(--header-bg) !important;
-        margin: 10%;
+        margin: 1%;
         margin-bottom: 0;
     }
     
@@ -189,12 +189,17 @@ html {
         margin: 8% auto;
         padding: 0;
         padding-bottom: 20px;
-        width: 80%;
+        width: 96%;
         box-shadow: none;
     }
 
     .filtered {
         display: none;
+    }
+
+    .tag.clear-filters {
+        margin-right: 2% !important;
+        margin-left: -5% !important;
     }
     
 }
@@ -214,7 +219,11 @@ html {
     .filtered {
         opacity: .2;
     }
-    
+
+    .tag.clear-filters {
+        margin-right: 1% !important;
+        margin-left: -5% !important;
+    }
 }
 
     .hero.is-light {
@@ -278,10 +287,10 @@ html {
     }
 
     
-    .tag.clear-filters {
+    /* .tag.clear-filters {
         margin-right: 1%;
         margin-left: -5%;
-    }
+    } */
     
     .tag.clear-filters:hover {
         background-color: var(--header-light) !important;
