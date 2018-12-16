@@ -36,18 +36,32 @@ anchors.forEach((anchor) =>
 
 
 function activeNavLink(e) {
+    let target = e.currentTarget
     anchors.forEach((elem) => {
         if (elem.classList.contains('active')) {
             elem.classList.toggle('active')
         }
     })
-    e.currentTarget.classList.toggle('active')
+    target === anchors[3] ?
+        contactModal() :
+        target.classList.toggle('active')
 }
 
 // ------------------------- modals ------------------------- //
 
+const modals =
+    document.querySelectorAll('.modal')
+const closeModals =
+    document.querySelectorAll('button.delete')
 
+closeModals.forEach((modal) =>
+    modal.addEventListener('click', () =>
+        modals.forEach((modal) => modal.classList.toggle('is-active'))
+    ))
 
+function contactModal() {
+    modals[0].classList.toggle('is-active')
+}
 
 
 // ------------------------- Select filters ------------------------- //
