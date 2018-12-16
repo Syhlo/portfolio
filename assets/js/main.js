@@ -1,4 +1,4 @@
-// Version: 0.9
+// Version: 0.9.1
 
 // ------------------------- Slider - Toggle state ------------------------- //
 
@@ -56,10 +56,11 @@ const modals =
 const closeModals =
     document.querySelectorAll('button.delete')
 
-closeModals.forEach((modal) =>
-    modal.addEventListener('click', () =>
-        modals.forEach((modal) => modal.classList.toggle('is-active'))
-    ))
+closeModals.forEach((close) =>
+    close.addEventListener('click', (index) =>
+        modals.forEach((modal) =>
+            modal.classList.remove('is-active')))
+)
 
 function contactModal() {
     modals[0].classList.toggle('is-active')
