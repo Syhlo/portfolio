@@ -366,7 +366,7 @@ html {
 */   
 
     .modal-content .box {
-        border-radius: 0 !important;
+        border-radius: 0 0 6px 6px !important;
     }
 
     .input, .textarea {
