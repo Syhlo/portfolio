@@ -55,6 +55,9 @@ const modals =
     document.querySelectorAll('.modal')
 const closeModals =
     document.querySelectorAll('button.delete')
+const envelope =
+    document.querySelector('.fa-envelope')
+envelope.addEventListener('click', contactModal)
 
 closeModals.forEach((close) =>
     close.addEventListener('click', (index) =>
