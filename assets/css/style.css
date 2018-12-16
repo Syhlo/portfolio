@@ -29,9 +29,10 @@
     --modal: #b1b1b1;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+    html {
+        scroll-behavior: smooth;
+    }
+
     /* Mobile Columns Fix */
     .columns {
         margin: 0 !important;
@@ -40,6 +41,8 @@ html {
     .subtitle {
         padding-top: 5px;
     }
+
+
 
 
 /* 
@@ -180,8 +183,24 @@ html {
         color: var(--edu);
     } */
 
-    #technologies {
+    .fullheight {
         height: 100%;
+    }
+
+    .easeOut {
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -ms-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        opacity: 0;
+    }
+
+    .easeIn {
+        -webkit-transition: opacity 1s ease-in;
+        -moz-transition: opacity 1s ease-in;
+        -ms-transition: opacity 1s ease-in;
+        -o-transition: opacity 1s ease-in;
+        opacity: 1;
     }
 
 
