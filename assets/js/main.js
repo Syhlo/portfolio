@@ -37,11 +37,13 @@ anchors.forEach((anchor) =>
 
 function activeNavLink(e) {
     let target = e.currentTarget
+    // Unselect previously selected (if link pressed isn't Contact)
     anchors.forEach((elem) => {
-        if (elem.classList.contains('active')) {
+        if (elem.classList.contains('active') && target !== anchors[3]) {
             elem.classList.toggle('active')
         }
     })
+    // Handle contact form & new selection
     target === anchors[3] ?
         contactModal() :
         target.classList.toggle('active')
