@@ -21,6 +21,7 @@
     /* Icons */
     --user: #5e855f;
     --info: #62869c;
+    /* --edu: #fbff00; */
 
     /* Misc */
     --skillset: #f5f7fa;
@@ -28,6 +29,9 @@
     --modal: #b1b1b1;
 }
 
+html {
+    scroll-behavior: smooth;
+}
     /* Mobile Columns Fix */
     .columns {
         margin: 0 !important;
@@ -37,9 +41,6 @@
         padding-top: 5px;
     }
 
-html {
-    scroll-behavior: smooth;
-}
 
 /* 
 #------------------#
@@ -175,6 +176,14 @@ html {
         color: var(--info);
     }
 
+    /* .fa-user-graduate {
+        color: var(--edu);
+    } */
+
+    #technologies {
+        height: 100%;
+    }
+
 
 
 
@@ -191,10 +200,6 @@ html {
         padding: 0;
         width: 96%;
         box-shadow: none;
-    }
-
-    #project-box {
-    padding-bottom: 20px;
     }
 
     .filtered {
@@ -219,10 +224,6 @@ html {
         box-shadow: none;
     }
 
-    #project-box {
-        padding-bottom: 20px;
-    }
-
     .filtered {
         opacity: .2;
     }
@@ -245,13 +246,15 @@ html {
         padding: 20px;
     }
 
+    .hero-bottom {
+        background-color: var(--header-bg);
+        border-radius: 0 0 6px 6px;
+        padding: 6px;
+    }
+
     .is-white {
         color: whitesmoke !important;
         font-weight: 300;
-    }
-
-    #languages {
-        height: 100%;
     }
     
     /* Filter Tags */
@@ -292,12 +295,6 @@ html {
         background-color: var(--header-bg) !important;
         margin: 10px 1px;
     }
-
-    
-    /* .tag.clear-filters {
-        margin-right: 1%;
-        margin-left: -5%;
-    } */
     
     .tag.clear-filters:hover {
         background-color: var(--header-light) !important;
@@ -340,6 +337,10 @@ html {
         border-radius: 12px 12px 0 0;
     }
 
+    #project-box .column {
+        padding-bottom: 20px;
+    }
+
 /* 
 #------------------#
 #  Footer Section  #
@@ -372,7 +373,7 @@ html {
 */   
 
     .modal-content .box {
-        border-radius: 0 0 6px 6px !important;
+        border-radius: 0;
     }
 
     .input, .textarea {
