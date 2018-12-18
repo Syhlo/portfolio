@@ -2,24 +2,15 @@
 
 // ------------------------- Slider - Toggle state ------------------------- //
 
-const slider =
-    document.getElementById('slider')
-const sliderC =
-    slider.classList
-
-const controller =
-    document.querySelector('.projects-tab')
-const control =
-    controller.classList
-
+const slider = document.getElementById('slider')
+const controller = document.querySelector('.projects-tab')
 
 controller.addEventListener('click', () => {
-    sliderC.toggle('closed')
-    sliderC.toggle('opened')
-    control.toggle('fa-chevron-down')
-    control.toggle('fa-chevron-up')
+    slider.classList.toggle('closed')
+    controller.classList.toggle('fa-chevron-down')
+    controller.classList.toggle('fa-chevron-up')
 
-    // Store locally
+    // Store state
     sliderState()
 })
 
@@ -27,9 +18,7 @@ controller.addEventListener('click', () => {
 
 // ------------------------- Active navigation link ------------------------- //
 
-const anchors =
-    document.querySelectorAll('.navbar-menu .navbar-end .navbar-item')
-
+const anchors = document.querySelectorAll('.navbar-end > .navbar-item')
 
 anchors.forEach((anchor) =>
     anchor.addEventListener('click', activeNavLink))
@@ -37,40 +26,73 @@ anchors.forEach((anchor) =>
 
 function activeNavLink(e) {
     let target = e.currentTarget
-    // Unselect previously selected (if link pressed isn't Contact)
+
+    // Unselect previously selected
     anchors.forEach((elem) => {
         if (elem.classList.contains('active') && target !== anchors[3]) {
             elem.classList.toggle('active')
         }
     })
+
     // Handle contact form & new selection
     target === anchors[3] ?
         contactModal() :
         target.classList.toggle('active')
 }
 
-// ------------------------- modals ------------------------- //
 
-const modals =
-    document.querySelectorAll('.modal')
-const closeModals =
-    document.querySelectorAll('button.delete')
-const envelope =
-    document.querySelector('.fa-envelope')
+
+// ------------------------- Contact modal ------------------------- //
+
+const modals = document.querySelectorAll('.modal')
+const closeModals = document.querySelectorAll('button.delete')
+const envelope = document.querySelector('.fa-envelope')
+
 envelope.addEventListener('click', contactModal)
 
-closeModals.forEach((close) =>
-    close.addEventListener('click', (index) =>
-        modals.forEach((modal) =>
-            modal.classList.remove('is-active')))
-)
-
+// Open modal
 function contactModal() {
     modals[0].classList.toggle('is-active')
 }
 
+closeModals.forEach((close) =>
+    close.addEventListener('click', (index) =>
+        // Close modals
+        modals.forEach((modal) =>
+            modal.classList.remove('is-active')))
+)
 
-// ------------------------- Select filters ------------------------- //
+
+
+
+// ------------------------- Education Section ------------------------- //
+const slideButtons = document.querySelectorAll('#education > div > div > p:nth-child(4) > button')
+const education = document.querySelector('#education')
+const slides = document.querySelectorAll('#slide')
+const backButton = document.querySelectorAll('.back')
+
+slideButtons.forEach((slide, index) => {
+    slide.addEventListener('click', () => switchSlide(index))
+})
+
+backButton.forEach((back) =>
+    back.addEventListener('click', goBack))
+
+function switchSlide(index) {
+    education.classList.toggle('hide-slide')
+    slides[index].classList.toggle('hide-slide')
+}
+
+function goBack() {
+    console.log('pressed')
+    slides.forEach((slide) => slide.classList.add('hide-slide'))
+    education.classList.remove('hide-slide')
+}
+
+
+
+
+// ------------------------- Filter Selection ------------------------- //
 
 // Filter tags
 const filterTags =
@@ -94,15 +116,14 @@ function selectFilter() {
                 event.currentTarget
             target.classList.toggle('is-info')
 
-            // Store locally
+            // Store selections
             selectedState(index, target)
 
-            // Project filter
+            // Filter projects
             filterItems(index)
         })
     }
 }
-
 
 
 // ------------------------- Filter the Projects ------------------------- //
@@ -137,27 +158,29 @@ function filterItems(index) {
     filteredState()
 }
 
+// Initiate Fitler System
+selectFilter()
+
 
 // -------- methods -------- //
 
-// Hide projects that don't contain all values in filterList
+// Hide projects that don't contain all IDs in filterList
 function hideProjects() {
     Object.keys(projectIDs).forEach((e, i) => {
         if (!arrayContains(projectIDs[e], filterList)) {
-            if (project[i].classList.contains('filtered')) {
+            if (project[i].classList.contains('hide')) {
                 return false
             }
-            project[i].classList.toggle('filtered')
+            project[i].classList.toggle('hide')
         }
     })
 }
 
-
-// Show projects that are currently filtered and contain all values in filterList
+// Show projects that are currently filtered and contain all IDs in filterList
 function showProjects() {
     Object.keys(projectIDs).forEach((e, i) => {
-        if (project[i].classList.contains('filtered') && arrayContains(projectIDs[e], filterList)) {
-            project[i].classList.toggle('filtered')
+        if (project[i].classList.contains('hide') && arrayContains(projectIDs[e], filterList)) {
+            project[i].classList.toggle('hide')
         }
     })
 }
@@ -179,9 +202,6 @@ function removeNull(array) {
     return arr
 }
 
-
-// Initiate
-selectFilter()
 
 
 
@@ -206,10 +226,9 @@ function restoreData() {
 
     // Restore slider state
     if (data[7] && JSON.parse(data[7]).sliderOpen === true) {
-        sliderC.remove('closed')
-        sliderC.add('opened')
-        control.remove('fa-chevron-down')
-        control.add('fa-chevron-up')
+        slider.classList.remove('closed')
+        controller.classList.remove('fa-chevron-down')
+        controller.classList.add('fa-chevron-up')
     }
 }
 
@@ -240,7 +259,7 @@ function filteredState() {
 function sliderState() {
     const item = JSON.stringify({
         sliderOpen:
-            !sliderC.contains('closed')
+            !slider.classList.contains('closed')
     })
     data[7] = item
     sessionStorage.setItem('data', JSON.stringify(data))
@@ -270,8 +289,8 @@ function clearFilters() {
 
     // Un-filter all projects
     project.forEach((item) => {
-        if (item.classList.contains('filtered')) {
-            item.classList.toggle('filtered')
+        if (item.classList.contains('hide')) {
+            item.classList.toggle('hide')
         }
     })
 

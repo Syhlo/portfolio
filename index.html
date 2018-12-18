@@ -18,9 +18,7 @@
 </head>
 
 <body>
-
     <!-- Navigation -->
-
     <nav class="navbar is-dark is-fixed-top">
 
         <div class="navbar-brand">
@@ -61,9 +59,10 @@
         <div id="about"></div>
     </section>
 
-    <!-- Welcome Notification -->
+    <!-- About -->
     <section class="hero is-light has-text-centered">
 
+        <!-- Welcome Notification -->
         <div class="columns">
             <div class="column is-6-desktop is-offset-3-desktop is-10-tablet is-offset-1-tablet">
                 <div class="notification is-info">
@@ -77,7 +76,7 @@
             </div>
         </div>
 
-        <!-- Services Tiles -->
+        <!-- About Tabs -->
         <div class="box">
 
             <div class="hero-top">
@@ -86,6 +85,7 @@
 
             <div class="columns is-multiline is-desktop">
 
+                <!-- About Me -->
                 <div class="column is-one-third-desktop">
                     <article class="media notification has-background-white fullheight">
                         <figure class="media-left">
@@ -111,6 +111,7 @@
                     </article>
                 </div>
 
+                <!-- Technologies -->
                 <div class="column is-one-third-desktop">
                     <article class="media notification has-background-light fullheight">
                         <figure class="media-left">
@@ -133,8 +134,10 @@
                     </article>
                 </div>
 
+                <!-- Education -->
                 <div class="column is-one-third-desktop">
-                    <article class="media notification has-background-white fullheight">
+                    <!-- Edu Tab -->
+                    <article class="media notification has-background-white fullheight" id="education">
                         <figure class="media-left">
                             <span class="icon is-large">
                                 <i class="fas fa-user-graduate fa-3x"></i>
@@ -152,7 +155,33 @@
                                     <button class="button is-small">CSS</button>
                                     <button class="button is-small">JavaScript</button>
                                 </p>
+                                <p class="is-size-7">* Not all resources used are displayed</p>
                             </div>
+                        </div>
+                    </article>
+
+                    <!-- HTML -->
+                    <article class="media notification has-background-white fullheight hide-slide" id="slide">
+                        <figure class="media-left">
+                            <span class="icon is-large">
+                                <i class="fab fa-html5 fa-3x"></i>
+                            </span>
+                        </figure>
+                        <div class="media-content">
+                            <div class="content">
+
+                                <h1 class="title is-4">HTML</h1>
+                                <p class="subtitle is-6">Resources</p>
+                                <div class="resources">
+                                    <a href="https://www.udemy.com/the-web-developer-bootcamp/" class="button is-small">
+                                        Colt Steele's Bootcamp
+                                    </a>
+                                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="button is-small">
+                                        MDN docs
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="button is-small back">Back</a>
                         </div>
                     </article>
                 </div>
@@ -162,8 +191,8 @@
         </div>
     </section>
 
+    <!-- Projects-->
     <div id="projects"></div>
-    <!-- Projects Section -->
     <section class="hero is-large is-light">
         <div class="box has-text-centered" id="project-box">
 
@@ -276,11 +305,7 @@
         </div>
     </section>
 
-
-
-
     <!-- Contact Modal -->
-
     <div class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
@@ -317,6 +342,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer hero is-dark">
         <div class="container">
             <div class="fabs is-pulled-right">

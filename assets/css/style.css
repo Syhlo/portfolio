@@ -138,9 +138,9 @@
     }
 
 /* 
-#--------------------#
-#  Services Section  #
-#--------------------#
+#-----------------#
+#  About Section  #
+#-----------------#
 */
 
 #about {
@@ -187,22 +187,48 @@
         height: 100%;
     }
 
-    .easeOut {
-        -webkit-transition: opacity 1s ease-in-out;
-        -moz-transition: opacity 1s ease-in-out;
-        -ms-transition: opacity 1s ease-in-out;
-        -o-transition: opacity 1s ease-in-out;
-        opacity: 0;
+    .media-content {
+        position: relative;
+        height: 100%;
     }
 
-    .easeIn {
-        -webkit-transition: opacity 1s ease-in;
-        -moz-transition: opacity 1s ease-in;
-        -ms-transition: opacity 1s ease-in;
-        -o-transition: opacity 1s ease-in;
-        opacity: 1;
+    .back {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 0;
     }
 
+    .hide-slide {
+        display: none;
+    }
+
+    #education, #slide:nth-child(1) {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    #education {
+        position: relative;
+        z-index: 1;
+    }
+    
+    
+    #slide:nth-child(1) {
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* Fixes margin issues for the slides */
+    .media + .media {
+        border-top: 0;
+        margin-top: 0;
+    }
+
+    .resources {
+        padding-bottom: 35px;
+    }
 
 
 
@@ -221,7 +247,7 @@
         box-shadow: none;
     }
 
-    .filtered {
+    .hide {
         display: none;
     }
 
@@ -243,7 +269,7 @@
         box-shadow: none;
     }
 
-    .filtered {
+    .hide {
         opacity: .2;
     }
 
