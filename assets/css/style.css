@@ -92,7 +92,7 @@
 */
 
 @media only screen and (max-width: 1088px) {
-    .hero-body {
+    .main-header .hero-body {
         height: 40vh;
     }
 }
@@ -148,7 +148,7 @@
     top: 75%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1088px) {
     
     .notification.is-info {
         background-color: var(--header-bg) !important;
@@ -158,7 +158,7 @@
     
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1088px) {
     
     .notification.is-info {
         background-color: var(--header-bg) !important;
