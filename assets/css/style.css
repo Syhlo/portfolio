@@ -220,12 +220,6 @@
         z-index: 2;
     }
     
-    /* Fixes margin issues for the slides */
-    .media + .media {
-        border-top: 0;
-        margin-top: 0.25rem;
-    }
-
     .resources {
         margin-top: -0.7rem;
         padding-bottom: 35px;
@@ -234,10 +228,13 @@
     a.button.is-small {
         margin-top: 5px;
     }
-
-    .resources > p {
-        margin: 0 !important;
+    
+    /* Fixes margin issues for the slides */
+    .media + .media {
+        border-top: 0;
+        margin-top: 0.25rem;
     }
+
 
 
 /* 

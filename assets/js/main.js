@@ -65,7 +65,7 @@ closeModals.forEach((close) =>
 
 
 
-// ------------------------- Education Section ------------------------- //
+// ------------------------- Education Tab in About ------------------------- //
 const slideButtons = document.querySelectorAll('#education > div > div > p:nth-child(4) > button')
 const education = document.querySelector('#education')
 const slides = document.querySelectorAll('#slide')
