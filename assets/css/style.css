@@ -203,7 +203,7 @@
         display: none;
     }
 
-    #education, #slide:nth-child(1) {
+    #education, #slide {
         position: absolute;
         top: 0;
         left: 0;
@@ -215,9 +215,13 @@
     }
     
     
-    #slide:nth-child(1) {
+    #slide {
         position: relative;
         z-index: 2;
+    }
+
+    .edu {
+        height: 268px;
     }
     
     .resources {
