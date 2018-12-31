@@ -133,7 +133,7 @@ const projectIDs = {
     portfolio: [0, 1, 2, 4],
     reactApp: [5],
     anotherApp: [5],
-    lastProject: []
+    lastProject: [3]
 }
 
 
