@@ -288,6 +288,83 @@
     }
 }
 
+
+
+
+
+    /* Starting the image slider */
+
+
+    .project-display {
+        height: 500px;
+        margin: 15px;
+        border: 1px solid #707070;
+    }
+
+    .project-display .inner {
+        display: flex;
+        overflow: hidden;
+    }
+
+    .project-display .inner img {
+        width:  100%;
+        height: 498px;
+    }
+
+    .image-select {
+        position: relative;
+        font-size: 18px;
+        top: -10%;
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none; 
+    }
+
+    .image-select > .dot {
+        margin: 0 1%;
+    }
+
+    .dot {
+        height: 14px;
+        width: 14px;
+        background-color: #fff;
+        border: 1px solid #707070;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: .5;
+    }
+
+    .dot.dot-active {
+        opacity: 1;
+    }
+
+    .project-links {
+        position: relative;
+        top: -9%;
+    }
+
+    .project-links > a.is-rounded {
+        border-radius: 14px;
+        width: 190px;
+        font-size: 14px; 
+    }
+
+    .button-divider {
+        width: 30%;
+        height: auto;
+        display: inline-block;
+    }
+
+
+
+
+
+
+
+
+
+
     .hero.is-light {
         background-color: var(--light);
         color: #363636;
